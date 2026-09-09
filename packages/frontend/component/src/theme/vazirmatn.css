@@ -1,0 +1,64 @@
+/*
+ * Vazirmatn — Persian (Farsi) UI font, variable weight 100-900.
+ * Source: https://github.com/rastikerdar/vazirmatn (SIL OFL 1.1 — see fonts/vazirmatn/OFL.txt)
+ *
+ * Why this file exists: the default --affine-font-* stacks ship no Arabic-script
+ * font, so Persian text fell through to OS-level fallbacks (Noto Nastaliq Urdu
+ * on Linux, Tahoma/Segoe UI on Windows), which look wrong for UI text.
+ *
+ * Vazirmatn is inserted BEFORE the system fallbacks in every stack, so:
+ *   - Latin text still renders Inter / Source Serif / IBM Plex Mono (unchanged),
+ *   - Arabic-script text falls through to Vazirmatn per-character.
+ * Loaded after '@toeverything/theme/style.css' (see ./index.ts), so these
+ * :root declarations win the cascade at equal specificity.
+ */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(../fonts/vazirmatn/Vazirmatn-VariableFont_wght.ttf);
+}
+
+:root {
+  --affine-font-family:
+    'Inter', 'Source Sans 3', Poppins, Vazirmatn, apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Tahoma, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --affine-font-sans-family:
+    'Inter', 'Source Sans 3', Poppins, Vazirmatn, apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Tahoma, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --affine-font-serif-family:
+    'Source Serif 4', 'Noto Serif', serif, 'Cambria', Vazirmatn, apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Tahoma, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --affine-font-mono-family:
+    'Source Code Pro', 'IBM Plex Mono', 'Roboto Mono', 'Noto Sans Mono',
+    'Noto Sans CJK', Vazirmatn, apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Tahoma, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --affine-font-number-family:
+    'Roboto Mono', 'Noto Sans Mono', Vazirmatn, apple-system,
+    BlinkMacSystemFont, 'Helvetica Neue', Tahoma, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --affine-font-code-family:
+    'IBM Plex Mono', 'Space Mono', Consolas, Menlo, Monaco, Courier, monospace,
+    Vazirmatn, apple-system, BlinkMacSystemFont, 'Helvetica Neue', Tahoma,
+    Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+@media print {
+  :root {
+    --affine-font-family:
+      'Inter', 'Source Sans 3', Poppins, Vazirmatn, 'Helvetica Neue', Tahoma,
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+    --affine-font-sans-family:
+      'Inter', 'Source Sans 3', Poppins, Vazirmatn, 'Helvetica Neue', Tahoma,
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
+  }
+}
