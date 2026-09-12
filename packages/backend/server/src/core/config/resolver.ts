@@ -75,12 +75,12 @@ export class ServerConfigResolver {
       name:
         this.config.server.name ??
         (env.selfhosted
-          ? 'AFFiNE Self-hosted'
+          ? 'Katiba Self-hosted'
           : env.namespaces.canary
-            ? 'AFFiNE Canary Cloud'
+            ? 'Katiba Canary Cloud'
             : env.namespaces.beta
-              ? 'AFFiNE Beta Cloud'
-              : 'AFFiNE Cloud'),
+              ? 'Katiba Beta Cloud'
+              : 'Katiba Cloud'),
       version: env.version,
       baseUrl: this.url.requestBaseUrl,
       type: env.DEPLOYMENT_TYPE,
