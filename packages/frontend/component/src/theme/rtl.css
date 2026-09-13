@@ -1,0 +1,62 @@
+/*
+ * Katiba: per-block RTL overrides (NotionFarsi-RTL port).
+ *
+ * The block-rtl.ts observer sets dir="rtl" on individual block roots
+ * (affine-paragraph, affine-list, affine-callout, affine-divider) when they
+ * contain Persian text. These rules mirror the physical CSS that does not
+ * flip automatically. English blocks never get dir, so they are untouched.
+ *
+ * Flex rows (list rich-text wrapper, callout, bookmark card) mirror
+ * themselves under dir=rtl — no rules needed for those.
+ */
+
+/* 0. Code blocks are always LTR, even inside a Persian doc. */
+affine-code {
+  direction: ltr !important;
+  text-align: left;
+}
+
+/* 1. Numbered-list marker gap: upstream margin-left: 2px is the outer offset
+ *    at the block edge; mirrored it goes to the inline-start side. */
+affine-list[dir='rtl'] .affine-list-block__numbered {
+  margin-left: 0;
+  margin-inline-start: 2px;
+}
+
+/* 2. Quote indent + bar: padding-left: 17px and ::after left: 0 flip sides. */
+affine-paragraph[dir='rtl'] .quote {
+  padding-left: 0;
+  padding-inline-start: 17px;
+}
+affine-paragraph[dir='rtl'] .quote::after {
+  left: auto;
+  right: 0;
+}
+
+/* 3. Placeholder edge: left: 0 pins English placeholder text to the left
+ *    wall inside an RTL block. */
+affine-paragraph[dir='rtl'] .affine-paragraph-placeholder {
+  left: auto;
+  right: 0;
+}
+
+/* 4. Heading icon gutter: absolute left: 0 + translateX(-80px) parks the
+ *    icon in the left gutter; mirrored it parks in the right gutter. */
+affine-paragraph[dir='rtl'] affine-paragraph-heading-icon .heading-icon {
+  left: auto;
+  right: 0;
+  transform: translateX(80px);
+}
+
+/* 5. Attachment status pill: left: 14px flips to the inline-start side. */
+affine-attachment[dir='rtl'] .affine-attachment-embed-status {
+  left: auto;
+  right: 14px;
+}
+
+/* 6. Bookmark banner gap: margin-left: 12px is the gap between text and
+ *    banner; mirrored (banner now left of text) the gap is inline-start. */
+affine-bookmark[dir='rtl'] .affine-bookmark-banner {
+  margin-left: 0;
+  margin-inline-start: 12px;
+}

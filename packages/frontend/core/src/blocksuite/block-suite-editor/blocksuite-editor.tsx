@@ -32,6 +32,7 @@ import type { CSSProperties, HTMLAttributes } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import type { DefaultOpenProperty } from '../../components/properties';
+import { installBlockRtlObserver } from './block-rtl';
 import { BlocksuiteDocEditor, BlocksuiteEdgelessEditor } from './lit-adaper';
 import * as styles from './styles.css';
 
@@ -207,6 +208,15 @@ const BlockSuiteEditorImpl = ({
     }
     return;
   }, [enableMiddleClickPaste]);
+
+  useEffect(() => {
+    // Katiba: per-block RTL detection (NotionFarsi-RTL logic, content-driven).
+    // Independent of the enable_editor_rtl flag — Persian blocks get dir=rtl,
+    // English blocks stay LTR.
+    const container = rootRef.current;
+    if (!container) return;
+    return installBlockRtlObserver(container);
+  }, [page]);
 
   useEffect(() => {
     const editor = affineEditorContainerProxy;

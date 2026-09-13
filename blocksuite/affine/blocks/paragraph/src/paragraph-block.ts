@@ -275,7 +275,8 @@ export class ParagraphBlockComponent extends CaptionedBlockComponent<ParagraphBl
       id=${childrenId}
       class="affine-block-children-container"
       style=${styleMap({
-        paddingLeft: `${BLOCK_CHILDREN_CONTAINER_PADDING_LEFT}px`,
+        // Katiba RTL: logical property so nested children mirror per-block.
+        paddingInlineStart: `${BLOCK_CHILDREN_CONTAINER_PADDING_LEFT}px`,
         display: collapsed ? 'none' : undefined,
       })}
     >

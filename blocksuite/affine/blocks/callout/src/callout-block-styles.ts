@@ -39,7 +39,8 @@ export const calloutEmojiStyles = css({
 export const calloutChildrenStyles = css({
   flex: 1,
   minWidth: 0,
-  paddingLeft: '10px',
+  // Katiba RTL: logical property so the gap mirrors per-block.
+  paddingInlineStart: '10px',
 });
 
 export const iconPickerContainerStyles = css({
