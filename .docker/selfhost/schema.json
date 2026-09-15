@@ -1162,8 +1162,8 @@
       "properties": {
         "enabled": {
           "type": "boolean",
-          "description": "Enable AI features. Workspace owners configure provider keys in Workspace Settings → Integrations → AI BYOK.\n@default false",
-          "default": false
+          "description": "Enable AI features. Workspace owners configure provider keys in Workspace Settings → Integrations → AI BYOK.\n@default true",
+          "default": true
         },
         "unsplash": {
           "type": "object",
@@ -1456,17 +1456,17 @@
         },
         "byok.allowCustomEndpoint": {
           "type": "boolean",
-          "description": "Allow AI BYOK keys to use a custom provider endpoint.\n@default false",
+          "description": "Allow AI BYOK keys to use a custom provider endpoint.\n@default true",
           "$schema": "http://json-schema.org/draft-07/schema#",
           "title": "boolean",
-          "default": false
+          "default": true
         },
         "byok.allowPrivateEndpoint": {
           "type": "boolean",
-          "description": "Whether workspace BYOK custom endpoints may resolve to private network targets. Enabling this allows workspace owners and admins to send provider probe requests to the private network.\n@default false",
+          "description": "Whether workspace BYOK custom endpoints may resolve to private network targets. Enabling this allows workspace owners and admins to send provider probe requests to the private network.\n@default true",
           "$schema": "http://json-schema.org/draft-07/schema#",
           "title": "boolean",
-          "default": false
+          "default": true
         }
       }
     },

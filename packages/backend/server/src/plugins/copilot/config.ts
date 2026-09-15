@@ -77,7 +77,7 @@ defineNativeModuleConfig(
   {
     enabled: {
       desc: 'Enable AI features. Workspace owners configure provider keys in Workspace Settings → Integrations → AI BYOK.',
-      default: false,
+      default: true,
     },
     unsplash: {
       desc: 'The config for the unsplash key.',

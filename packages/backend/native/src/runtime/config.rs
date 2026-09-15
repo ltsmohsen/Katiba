@@ -100,12 +100,22 @@ impl ConfigSource {
   }
 }
 
-#[derive(Clone, Default, Deserialize)]
+#[derive(Clone, Deserialize)]
 #[serde(rename_all = "camelCase", default)]
 pub(crate) struct CopilotRuntimeConfig {
   pub(crate) enabled: bool,
   pub(crate) byok: CopilotByokRuntimeConfig,
   pub(crate) providers: CopilotProvidersRuntimeConfig,
+}
+
+impl Default for CopilotRuntimeConfig {
+  fn default() -> Self {
+    Self {
+      enabled: true,
+      byok: CopilotByokRuntimeConfig::default(),
+      providers: CopilotProvidersRuntimeConfig::default(),
+    }
+  }
 }
 
 #[derive(Clone, Deserialize, serde::Serialize, schemars::JsonSchema)]
@@ -123,8 +133,8 @@ impl Default for CopilotByokRuntimeConfig {
     Self {
       enabled: true,
       allowed_providers: default_allowed_providers(),
-      allow_custom_endpoint: false,
-      allow_private_endpoint: false,
+      allow_custom_endpoint: true,
+      allow_private_endpoint: true,
     }
   }
 }
@@ -158,12 +168,22 @@ fn enabled_by_default() -> bool {
   true
 }
 
-#[derive(Clone, Default, Deserialize, serde::Serialize, schemars::JsonSchema)]
+#[derive(Clone, Deserialize, serde::Serialize, schemars::JsonSchema)]
 #[serde(rename_all = "camelCase", default)]
 pub(crate) struct CopilotRuntimeConfigFile {
   pub(super) enabled: bool,
   pub(super) byok: CopilotByokRuntimeConfig,
   pub(super) providers: CopilotProvidersRuntimeConfigFile,
+}
+
+impl Default for CopilotRuntimeConfigFile {
+  fn default() -> Self {
+    Self {
+      enabled: true,
+      byok: CopilotByokRuntimeConfig::default(),
+      providers: CopilotProvidersRuntimeConfigFile::default(),
+    }
+  }
 }
 
 #[derive(Clone, Default, Deserialize, serde::Serialize, schemars::JsonSchema)]
